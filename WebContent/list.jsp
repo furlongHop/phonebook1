@@ -7,7 +7,7 @@
 
 <%
 PhoneDao phoneDao = new PhoneDao();//PersonDao에 포함된 getPersonList 메소드를 사용하기 위해
-List<PersonVo> personList = phoneDao.getPersonList();//정보가 personList에 저장되기 때문에 그 리스트를 전달해야 한다
+List<PersonVo> personList = phoneDao.getPersonList();//정보가 personList에 저장되기 때문에 그 리스트를 전달해야 한다(주소)
 %>
 
 <!DOCTYPE html>

@@ -146,7 +146,9 @@ public class PhoneDao {
 	// 사람 1명정보만 가져올때
 	public PersonVo getPerson(int personId) {
 		PersonVo personVo = null;
-
+		//try~catch 과정에서 오류가 발생해 personVo가 생성되지 못할 경우(4번 과정) 참조할 주소가 존재하지 않아 오류가 난다.(return 불가)
+		//이 경우 오류를 방지하기 위해 참조하는 주소가 없는 상태(null)라도 반환하기 위해 null로 값을 초기화한다.(주소 없는 것을 확정)
+		//초기화: 객체 선언 후 값을 최초로 할당하는 것
 		getConnection();
 
 		try {
@@ -221,7 +223,7 @@ public class PhoneDao {
 	}
 
 	// 사람 삭제
-	public int personDelete(int personId) {
+	public int personDelete(int personId) {//메소드 return형을 int로 만든 이유: delete.jsp에서 확인
 		int count = 0;
 		getConnection();
 
@@ -234,7 +236,7 @@ public class PhoneDao {
 
 			pstmt.setInt(1, personId);// ?(물음표) 중 1번째, 순서중요
 
-			count = pstmt.executeUpdate(); // 쿼리문 실행
+			count = pstmt.executeUpdate(); // 쿼리문 실행 > 성공한 개수
 
 			// 4.결과처리
 			// System.out.println(count + "건 삭제되었습니다.");
@@ -244,7 +246,7 @@ public class PhoneDao {
 		}
 
 		close();
-		return count;
+		return count; //delete 성공한 개수 return
 	}
 
 }
